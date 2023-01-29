@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import Container from './components/Container';
 import './App.css'
-import Header from './components/Header';
+import {Navbar, Nav, Button} from 'react-bootstrap'
 
 const App = () => {
     return (
