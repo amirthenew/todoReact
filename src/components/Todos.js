@@ -8,12 +8,26 @@ const changHandler=(event) =>{
     setMessage(event.target.value)
 } 
 
-    return ( 
+const [tasks,setTask]=useState([])
+
+const taskRemover=()=>{
+setTask([])
+}
+
+const taskHandler=()=>{
+setTask([...tasks,message])
+setMessage("")
+}    
+return ( 
         <div>
-        <h2>{message}</h2>
-        <input type='text' value={message} onChange={changHandler}/>
-        <button>
-        add</button>
+        <input type="text" value={message} onChange={changHandler} />
+      <button onClick={taskHandler}>Add</button>
+      <button onClick={taskRemover}>Clear</button>
+     {tasks.map((task)=>(
+<li>{task}</li>
+
+     ))}
+      
         </div>
     
     );
