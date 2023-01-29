@@ -1,0 +1,15 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Mud';
+}
+
+@font-face {
+    font-family:'Mud' ;
+    src: url(../font/wpmudev-close-icon.eot) format('eot'),
+    url(../font/wpmudev-close-icon.ttf) format('ttf'),
+    url(../font/wpmudev-close-icon.woff) format('woff'),
+    url(../font/wpmudev-close-icon.woff2) format(('woff2'))
+
+    
+}
