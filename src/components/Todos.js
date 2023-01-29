@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import styles from '../components/Todos.module.css'
 const Todos = () => {
 
     const [message ,setMessage] = useState('')
@@ -19,7 +19,7 @@ setTask([...tasks,message])
 setMessage("")
 }    
 return ( 
-        <div>
+        <div className={styles.box}>
         <input type="text" value={message} onChange={changHandler} />
       <button onClick={taskHandler}>Add</button>
       <button onClick={taskRemover}>Clear</button>
