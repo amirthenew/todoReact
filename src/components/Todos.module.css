@@ -16,3 +16,6 @@ button{
     border: none;
     outline: none;
 }
+li{
+    list-style-type: none;
+}
