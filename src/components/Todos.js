@@ -7,33 +7,39 @@ import Header from './Header';
 const trashIcon = <FontAwesomeIcon icon={faTrash}/>
 const plusIcon  = <FontAwesomeIcon icon={faPlus}/>
 const Todos = () => {
-const [message ,setMessage] = useState('') 
-const changHandler=(event) =>{
-    setMessage(event.target.value)
-} 
+
+
+const [text ,setText] = useState('') 
 const [tasks,setTask]=useState([])
-const taskRemover=()=>{
-setTask([])
-}
+const [editBtn,setEdit] = useState('Edit')
+
+const changHandler=(event) =>{
+    setText(event.target.value)
+} 
+
+
 const addTask=()=>{
-setTask([...tasks])
-setMessage("")
+setTask([...tasks,text])
+setText("")
 }  
-let deleteTask = (index)=>{
-    const newTask = [...tasks]
-    newTask.splice(index,1)
-    setTask(newTask)
+
+const reomveTask = ()=>{
+setText([])
 }
+
 return ( 
     <div className={styles.box}>
     <Header/>
-    <input type="text" value={message} onChange={changHandler} />
-  <button className={styles.addBtn} onClick={addTask} style={{'padding-left':'0.5rem','padding-right':'0.5rem'}}>{plusIcon}</button>
-  {tasks.map((task)=>(
-    <li key={task.id}>{task.message}<i onClick={deleteTask}>{trashIcon}</i></li> 
-         ))}
-         {console.log(tasks)}
-    </div>
+    <input type="text" value={text} onChange={changHandler} />
+  <button className={styles.addBtn} onClick={addTask} style={{padding:'0 .5rem'}}>{plusIcon}</button>
+{
+tasks.map((task,id)=>{
+    return (<li key={id} onClick={reomveTask(id)}>{task} </li>)
+})
+
+}
+{console.log(tasks)}
+  </div>
 )  
 }
 
