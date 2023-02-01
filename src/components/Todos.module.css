@@ -18,4 +18,15 @@ button{
 }
 li{
     list-style-type: none;
+    padding-top: .3rem;
+}
+
+.addBtn:hover{
+    color: rgb(255, 255, 255);
+    background-color: black;
+    transition: .4s all ease-in;
+}
+
+.trash{
+    margin-left: .5rem;
 }
