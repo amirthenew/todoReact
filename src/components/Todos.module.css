@@ -30,3 +30,7 @@ li{
 .trash{
     margin-left: .5rem;
 }
+
+.completed{
+    text-decoration: line-through;
+}

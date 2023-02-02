@@ -11,7 +11,7 @@ const Todos = () => {
 const [text ,setText] = useState('') 
 const [tasks,setTask]=useState([])
 // const [editBtn,setEdit] = useState('Edit')
-// const [status,setStatus]=useState(false)
+const [status,setStatus]=useState(false)
 const changHandler=(event) =>{
     setText(event.target.value)} 
 const addTask=()=>{
@@ -19,8 +19,16 @@ setTask([...tasks,text])
 setText("")
 }  
 
-const removeTask = ()=>{
-setTask([])
+const toggleClass = ()=>{
+  setStatus(!status)
+
+}
+
+const removeTask = value=>{
+setTask((oldValues)=>{
+return oldValues.filter(task=>task !== value)
+
+})
 }
 
 return ( 
@@ -28,7 +36,7 @@ return (
     <Header/>
     <input type="text" value={text} onChange={changHandler} />
   <button className={styles.addBtn} onClick={addTask} style={{padding:'0 .5rem'}}>{plusIcon}</button>
-{tasks.map((task,id)=> <div key={id} className='todo'><span >{task}</span><i onClick={removeTask}>{faTrashs}</i></div>)}
+{tasks.map((task,id)=> <div key={id} className='todo'><span className={status ? styles.completed : null} onClick={toggleClass}>{task}</span><i onClick={()=>removeTask(task)}>{faTrashs}</i></div>)}
   </div>)
 
 
