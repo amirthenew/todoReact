@@ -28,7 +28,7 @@ return (
     <Header/>
     <input type="text" value={text} onChange={changHandler} />
   <button className={styles.addBtn} onClick={addTask} style={{padding:'0 .5rem'}}>{plusIcon}</button>
-{tasks.map((task)=> <div className='todo'><i>{task}</i><button onClick={removeTask}>{faTrashs}</button></div>)}
+{tasks.map((task,id)=> <div key={id} className='todo'><span >{task}</span><i onClick={removeTask}>{faTrashs}</i></div>)}
   </div>)
 
 
