@@ -11,7 +11,7 @@ const Todos = () => {
 
 
   useEffect(()=>{
-    let dataFromLocal = localStorage.getItem('key');
+    let dataFromLocal = localStorage.getItem('key')
     console.log(dataFromLocal)
     },[])
     
@@ -47,7 +47,7 @@ return (
     <Header/>
     <input type="text" value={text} onChange={changHandler} />
   <button className={styles.addBtn} onClick={addTask} style={{padding:'0 .5rem'}}>{plusIcon}</button>
-{tasks.map((task,id)=> <div key={id} className='todo'><span className={status ? styles.completed : null} onClick={toggleClass}>{task}</span><i onClick={()=>removeTask(task)}>{faTrashs}</i></div>)}
+{tasks.map((task,id)=> <div key={id} className='todo'><span className={status ? styles.completed : null} onClick={toggleClass}>{text}</span><i onClick={()=>removeTask(task)}>{faTrashs}</i></div>)}
   </div>)
 
 
