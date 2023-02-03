@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import styles from '../components/Todos.module.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBackspace, faTrash,faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -8,6 +8,13 @@ import Header from './Header';
 const faTrashs = <FontAwesomeIcon icon={faTrash}/>
 const plusIcon  = <FontAwesomeIcon icon={faPlus}/>
 const Todos = () => {
+
+
+  useEffect(()=>{
+    localStorage.getItem('key');
+    console.log(localStorage.getItem('key'));
+    },[])
+    
 const [text ,setText] = useState('') 
 const [tasks,setTask]=useState([])
 // const [editBtn,setEdit] = useState('Edit')
@@ -16,6 +23,7 @@ const changHandler=(event) =>{
     setText(event.target.value)} 
 const addTask=()=>{
 setTask([...tasks,text])
+localStorage.setItem('key',text)
 setText("")
 }  
 
