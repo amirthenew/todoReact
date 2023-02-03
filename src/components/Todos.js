@@ -11,8 +11,8 @@ const Todos = () => {
 
 
   useEffect(()=>{
-    localStorage.getItem('key');
-    console.log(localStorage.getItem('key'));
+    let dataFromLocal = localStorage.getItem('key');
+    console.log(dataFromLocal)
     },[])
     
 const [text ,setText] = useState('') 
@@ -23,7 +23,10 @@ const changHandler=(event) =>{
     setText(event.target.value)} 
 const addTask=()=>{
 setTask([...tasks,text])
-localStorage.setItem('key',text)
+const todoList = localStorage.getItem('key') ?
+JSON.parse(localStorage.getItem('key')) : []
+todoList.push(text)
+localStorage.setItem('key',JSON.stringify(todoList))
 setText("")
 }  
 
