@@ -17,12 +17,15 @@ const Todos = () => {
     
 const [text ,setText] = useState('') 
 const [tasks,setTask]=useState([])
-// const [editBtn,setEdit] = useState('Edit')
 const [status,setStatus]=useState(false)
+
+
 const changHandler=(event) =>{
     setText(event.target.value)} 
+
+
 const addTask=()=>{
-setTask([...tasks,text])
+setTask([...tasks,{task:text,isDone:false}])
 const todoList = localStorage.getItem('key') ?
 JSON.parse(localStorage.getItem('key')) : []
 todoList.push(text)
@@ -46,9 +49,14 @@ return (
     <div className={styles.box}>
     <Header/>
     <input type="text" value={text} onChange={changHandler} />
-  <button className={styles.addBtn} onClick={addTask} style={{padding:'0 .5rem'}}>{plusIcon}</button>
-{tasks.map((task,id)=> <div key={id} className='todo'><span className={status ? styles.completed : null} onClick={toggleClass}>{text}</span><i onClick={()=>removeTask(task)}>{faTrashs}</i></div>)}
-  </div>)
+  <button className={styles.addBtn} onClick={addTask} 
+  style={{padding:'0 .5rem'}}>{plusIcon}</button>
+{tasks.map((task,id)=> <div key={id} 
+className='todo'><span className={status ? styles.completed : null} 
+onClick={toggleClass}>{task}{id}</span>
+<i onClick={()=>removeTask(task)}>{faTrashs}</i></div>)}
+ {console.log(tasks)}
+</div>)
 
 
 }
