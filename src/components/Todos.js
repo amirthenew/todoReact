@@ -52,11 +52,11 @@ return (
   <button className={styles.addBtn} onClick={addTask} 
   style={{padding:'0 .5rem'}}>{plusIcon}</button>
 {tasks.map((task,id)=> <div key={id} 
-className='todo'><span className={status ? styles.completed : null} 
+className={styles.todo}><span className={status ? styles.completed : null} 
 onClick={toggleClass}>{id+1} : {task}</span>
-<i onClick={()=>removeTask(task)}>{faTrashs}</i></div>)}
+<i className={styles.trashIcon} onClick={()=>removeTask(task)}>{faTrashs}</i></div>)}
 
-<span className={styles.hint}>{`you have ${tasks.length} to do`}</span>
+<i className={styles.hint}>{`you have ${tasks.length} to do`}</i>
  {console.log(tasks)}
 </div>)
 

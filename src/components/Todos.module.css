@@ -27,8 +27,9 @@ li{
     transition: .4s all ease-in;
 }
 
-.trash{
+.trashIcon{
     margin-left: .5rem;
+    cursor: pointer;
 }
 
 .completed{
@@ -43,4 +44,8 @@ li{
     font-size: smaller;
     display: flex;
     justify-content: end;
+    margin-top: .4rem;
+}
+.todo{
+    padding-top: .5rem;
 }
