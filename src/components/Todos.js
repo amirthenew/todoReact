@@ -23,20 +23,18 @@ const [status,setStatus]=useState(false)
 
 
 const getTask = ()=>{
-const todoList = localStorage.getItem('tasks')
-console.log(todoList);
-  // todoList.forEach(task => {
-  //   addTask(text)
-  // })
+console.log(tasks)
+console.log(localStorage.getItem('tasks'));
+
+
   }
 
 
 const saveTask = ()=> {
-  const todoList = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : []
-const todoItem = [text]
 
-todoList.push(todoItem)
-localStorage.setItem('tasks',JSON.stringify(todoList))
+const todoItem = [...tasks,text]
+todoItem.push(text)
+localStorage.setItem('tasks',JSON.stringify(todoItem))
 }
 
 const changHandler=(event) =>{
@@ -49,7 +47,7 @@ saveTask()
 setText("")
 }  
 
-const toggleClass = (value)=>{
+const toggleClass = ()=>{
   
   setStatus(!status)
 
@@ -68,7 +66,8 @@ return (
     <input className={styles.placeholder} placeholder='enter your task here ...' type="text" value={text} onChange={changHandler} />
     <button className={styles.addBtn} onClick={addTask} 
     style={{padding:'0 .5rem'}}>{plusIcon}</button>
-  {tasks.map((task,id)=> <div key={id} 
+  {tasks.map((task,id)=> 
+    <div key={id} 
   className={styles.todo}><span className={status ? styles.completed : null} 
   onClick={toggleClass}>{id+1} : {task}</span>
   <i className={styles.trashIcon} onClick={()=>removeTask(task)}>{faTrashs}</i>
