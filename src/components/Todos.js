@@ -11,11 +11,7 @@ const Todos = () => {
 
 
   useEffect(()=>{
-    let dataFromLocal =localStorage.getItem('tasks')
-    console.log(dataFromLocal)
-    if (tasks){
-      setTask([...tasks,dataFromLocal])
-    }
+   getTask()
     },[])
 
   
@@ -26,9 +22,18 @@ const [tasks,setTask]=useState([])
 const [status,setStatus]=useState(false)
 
 
+const getTask = ()=>{
+const todoList = localStorage.getItem('tasks')
+console.log(todoList);
+  // todoList.forEach(task => {
+  //   addTask(text)
+  // })
+  }
+
+
 const saveTask = ()=> {
   const todoList = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : []
-const todoItem = [...tasks,text]
+const todoItem = [text]
 
 todoList.push(todoItem)
 localStorage.setItem('tasks',JSON.stringify(todoList))
