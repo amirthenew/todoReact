@@ -11,14 +11,28 @@ const Todos = () => {
 
 
   useEffect(()=>{
-    let dataFromLocal = localStorage.getItem('key')
+    let dataFromLocal =localStorage.getItem('tasks')
     console.log(dataFromLocal)
+    if (tasks){
+      setTask([...tasks,dataFromLocal])
+    }
     },[])
+
+  
+
     
 const [text ,setText] = useState('') 
 const [tasks,setTask]=useState([])
 const [status,setStatus]=useState(false)
 
+
+const saveTask = ()=> {
+  const todoList = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : []
+const todoItem = [...tasks,text]
+
+todoList.push(todoItem)
+localStorage.setItem('tasks',JSON.stringify(todoList))
+}
 
 const changHandler=(event) =>{
     setText(event.target.value)} 
@@ -26,14 +40,12 @@ const changHandler=(event) =>{
 
 const addTask=()=>{
 setTask([...tasks,text])
-const todoList = localStorage.getItem('key') ?
-JSON.parse(localStorage.getItem('key')) : []
-todoList.push(text)
-localStorage.setItem('key',JSON.stringify(todoList))
+saveTask()
 setText("")
 }  
 
-const toggleClass = ()=>{
+const toggleClass = (value)=>{
+  
   setStatus(!status)
 
 }
@@ -49,18 +61,21 @@ return (
     <div className={styles.box}>
     <Header/>
     <input className={styles.placeholder} placeholder='enter your task here ...' type="text" value={text} onChange={changHandler} />
-  <button className={styles.addBtn} onClick={addTask} 
-  style={{padding:'0 .5rem'}}>{plusIcon}</button>
-{tasks.map((task,id)=> <div key={id} 
-className={styles.todo}><span className={status ? styles.completed : null} 
-onClick={toggleClass}>{id+1} : {task}</span>
-<i className={styles.trashIcon} onClick={()=>removeTask(task)}>{faTrashs}</i></div>)}
+    <button className={styles.addBtn} onClick={addTask} 
+    style={{padding:'0 .5rem'}}>{plusIcon}</button>
+  {tasks.map((task,id)=> <div key={id} 
+  className={styles.todo}><span className={status ? styles.completed : null} 
+  onClick={toggleClass}>{id+1} : {task}</span>
+  <i className={styles.trashIcon} onClick={()=>removeTask(task)}>{faTrashs}</i>
 
-<i className={styles.hint}>{`you have ${tasks.length} to do`}</i>
- {console.log(tasks)}
-</div>)
+  </div>)}
+  <i className={styles.hint}>{`you have ${tasks.length} tasks to do`}</i>
+
+  
+  </div>)}
 
 
-}
 
 export default Todos;
+
+
