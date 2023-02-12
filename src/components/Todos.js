@@ -23,16 +23,15 @@ const [status,setStatus]=useState(false)
 
 
 const getTask = ()=>{
-console.log(tasks)
-console.log(localStorage.getItem('tasks'));
-
-
-  }
-
+const oldTasks = JSON.parse(localStorage.getItem('tasks'))
+console.log(oldTasks);
+  if (oldTasks){
+setTask([...oldTasks])
+}}
 
 const saveTask = ()=> {
 
-const todoItem = [...tasks,text]
+const todoItem = [...tasks]
 todoItem.push(text)
 localStorage.setItem('tasks',JSON.stringify(todoItem))
 }
@@ -55,6 +54,7 @@ const toggleClass = ()=>{
 
 const removeTask = value=>{
 setTask((oldValues)=>{
+  localStorage
 return oldValues.filter(task=>task !== value)
 
 })
@@ -66,6 +66,7 @@ return (
     <input className={styles.placeholder} placeholder='enter your task here ...' type="text" value={text} onChange={changHandler} />
     <button className={styles.addBtn} onClick={addTask} 
     style={{padding:'0 .5rem'}}>{plusIcon}</button>
+    <button>clear</button>
   {tasks.map((task,id)=> 
     <div key={id} 
   className={styles.todo}><span className={status ? styles.completed : null} 
