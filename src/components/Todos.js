@@ -24,7 +24,6 @@ const [status,setStatus]=useState(false)
 
 const getTask = ()=>{
 const oldTasks = JSON.parse(localStorage.getItem('tasks'))
-console.log(oldTasks);
   if (oldTasks){
 setTask([...oldTasks])
 }}
@@ -53,11 +52,18 @@ const toggleClass = ()=>{
 }
 
 const removeTask = value=>{
+console.log(tasks);
+console.log(value);
+
 setTask((oldValues)=>{
-  localStorage
-return oldValues.filter(task=>task !== value)
+  console.log(oldValues);
+  localStorage.setItem('tasks',JSON.stringify(oldValues))
+ return oldValues.filter(task=>task !== value)
 
 })
+
+
+
 }
 
 return ( 
