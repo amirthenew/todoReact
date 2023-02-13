@@ -74,7 +74,7 @@ return (
     <input className={styles.placeholder} placeholder='enter your task here ...' type="text" value={text} onChange={changHandler} />
     <button className={styles.addBtn} onClick={addTask} 
     style={{padding:'0 .5rem'}}>{plusIcon}</button>
-    <button onClick={clearAll}>clear</button>
+    <button className={styles.trash} onClick={clearAll}>{faTrashs}</button>
   {tasks.map((task,id)=> 
     <div key={id} 
   className={styles.todo}><span className={status ? styles.completed : null} 
