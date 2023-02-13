@@ -51,10 +51,12 @@ const toggleClass = ()=>{
 
 }
 
-const removeTask = value=>{
-console.log(tasks);
-console.log(value);
+const clearAll = ()=>{
+setTask([])
+localStorage.removeItem('tasks')
+}
 
+const removeTask = value=>{
 setTask((oldValues)=>{
   console.log(oldValues);
   localStorage.setItem('tasks',JSON.stringify(oldValues))
@@ -72,7 +74,7 @@ return (
     <input className={styles.placeholder} placeholder='enter your task here ...' type="text" value={text} onChange={changHandler} />
     <button className={styles.addBtn} onClick={addTask} 
     style={{padding:'0 .5rem'}}>{plusIcon}</button>
-    <button>clear</button>
+    <button onClick={clearAll}>clear</button>
   {tasks.map((task,id)=> 
     <div key={id} 
   className={styles.todo}><span className={status ? styles.completed : null} 
