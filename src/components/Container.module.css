@@ -1,6 +1,6 @@
 .container {
 min-height: 100vh;
 display: flex;
-    background-color: rgb(128, 166, 255);
+    background : linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(192,181,218,1) 52%, rgba(148,187,233,1) 100%);
 }
 
