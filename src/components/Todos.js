@@ -48,20 +48,19 @@ localStorage.removeItem('tasks')
 
 const removeTask = (index)=>{
 const newTasks =[...tasks]
-console.log(index);
-console.log(newTasks);
-// newTasks.splice(index,1)
+newTasks.splice(index,1)
 setTask(newTasks)
 localStorage.setItem('tasks',JSON.stringify(newTasks))
+
 
 }
 
 const taskDone = (index)=>{
   const newTasks = [...tasks]
-  newTasks[index].completed= !newTasks[index].completed
-  console.log(newTasks);
-  localStorage.setItem('tasks',JSON.stringify(newTasks))
   setTask(newTasks)
+  newTasks[index].completed= !newTasks[index].completed
+  localStorage.setItem('tasks',JSON.stringify(newTasks))
+  
 }
 
 return ( 
@@ -85,7 +84,7 @@ return (
     >
   
   <span>{index+1} : {task.taskName}</span>
-  <i className={styles.trashIcon} onClick={()=>removeTask(task)}>{faTrashs}</i>
+  <i className={styles.trashIcon} onClick={()=>removeTask(index)}>{faTrashs}</i>
   <i className={styles.tick} onClick={()=>taskDone(index)}>{tick}</i>
   
   </div>)}
