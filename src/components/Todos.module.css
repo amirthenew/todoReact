@@ -53,3 +53,11 @@ li{
 .trash{
 padding-right: 0.3rem;
 }
+
+.taskBox{
+    padding-top: .5rem;
+}
+.tick{
+    margin-left: .4rem;
+    cursor: pointer;
+}

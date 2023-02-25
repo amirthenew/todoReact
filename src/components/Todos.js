@@ -1,12 +1,13 @@
 import React, { useState,useEffect } from 'react';
 import styles from '../components/Todos.module.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faTrash,faPlus } from '@fortawesome/free-solid-svg-icons'
+import {faTrash,faPlus,faCheck } from '@fortawesome/free-solid-svg-icons'
 import Header from './Header';
 
 
 const faTrashs = <FontAwesomeIcon icon={faTrash}/>
 const plusIcon  = <FontAwesomeIcon icon={faPlus}/>
+const tick = <FontAwesomeIcon icon={faCheck}/>
 const Todos = () => {
 
   useEffect(()=>{
@@ -47,7 +48,9 @@ localStorage.removeItem('tasks')
 
 const removeTask = (index)=>{
 const newTasks =[...tasks]
-newTasks.splice(index,1)
+console.log(index);
+console.log(newTasks);
+// newTasks.splice(index,1)
 setTask(newTasks)
 localStorage.setItem('tasks',JSON.stringify(newTasks))
 
@@ -74,13 +77,17 @@ return (
     style={{padding:'0 .5rem'}}>{plusIcon}</button>
     <button className={styles.trash} onClick={clearAll}>{faTrashs}</button>
   {tasks.map((task,index)=> 
-    <div 
+    <div className={styles.taskBox} 
     key={index} 
-  style={{textDecoration : !task.completed ? 'none' : 'line-through'}}>
-  
-  <span onClick={()=>taskDone(index)} >{index+1} : {task.taskName}</span>
-  <i className={styles.trashIcon} onClick={()=>removeTask(task)}>{faTrashs}</i>
+    style={{textDecoration : !task.completed ? 'none' : 'line-through'}}
 
+    
+    >
+  
+  <span>{index+1} : {task.taskName}</span>
+  <i className={styles.trashIcon} onClick={()=>removeTask(task)}>{faTrashs}</i>
+  <i className={styles.tick} onClick={()=>taskDone(index)}>{tick}</i>
+  
   </div>)}
   <i className={styles.hint}>{`you have ${tasks.length} tasks to do`}</i>
 
