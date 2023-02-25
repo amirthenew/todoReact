@@ -55,7 +55,7 @@ localStorage.setItem('tasks',JSON.stringify(newTasks))
 
 const taskDone = (index)=>{
   const newTasks = [...tasks]
-  newTasks[index].completed=true
+  newTasks[index].completed= !newTasks[index].completed
   console.log(newTasks);
   localStorage.setItem('tasks',JSON.stringify(newTasks))
   setTask(newTasks)
@@ -76,7 +76,7 @@ return (
   {tasks.map((task,index)=> 
     <div 
     key={index} 
-  style={{textDecoration : !task.completed ? 'null' : 'line-through'}}>
+  style={{textDecoration : !task.completed ? 'none' : 'line-through'}}>
   
   <span onClick={()=>taskDone(index)} >{index+1} : {task.taskName}</span>
   <i className={styles.trashIcon} onClick={()=>removeTask(task)}>{faTrashs}</i>
