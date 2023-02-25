@@ -24,9 +24,7 @@ setTask([...oldTasks])
 }}
 
 const saveTask = ()=> {
-
-const todoItem = [...tasks]
-todoItem.push(inputValue)
+const todoItem = [...tasks,{taskName:inputValue,completed : false}]
 localStorage.setItem('tasks',JSON.stringify(todoItem))
 }
 
@@ -59,7 +57,7 @@ const taskDone = (index)=>{
   const newTasks = [...tasks]
   newTasks[index].completed=true
   console.log(newTasks);
-  localStorage.setItem('taks',JSON.stringify(newTasks))
+  localStorage.setItem('tasks',JSON.stringify(newTasks))
   setTask(newTasks)
 }
 
@@ -78,7 +76,7 @@ return (
   {tasks.map((task,index)=> 
     <div 
     key={index} 
-  style={{textDecoration : task.completed ? 'line-through' : 'null'}}>
+  style={{textDecoration : !task.completed ? 'null' : 'line-through'}}>
   
   <span onClick={()=>taskDone(index)} >{index+1} : {task.taskName}</span>
   <i className={styles.trashIcon} onClick={()=>removeTask(task)}>{faTrashs}</i>
