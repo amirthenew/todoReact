@@ -58,6 +58,8 @@ localStorage.setItem('tasks',JSON.stringify(tasks))
 const taskDone = (index)=>{
   const newTasks = [...tasks]
   newTasks[index].completed=true
+  console.log(newTasks);
+  localStorage.setItem('taks',JSON.stringify(newTasks))
   setTask(newTasks)
 }
 
