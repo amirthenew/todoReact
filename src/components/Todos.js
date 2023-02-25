@@ -49,7 +49,7 @@ const removeTask = (index)=>{
 const newTasks =[...tasks]
 newTasks.splice(index,1)
 setTask(newTasks)
-localStorage.setItem('tasks',JSON.stringify(tasks))
+localStorage.setItem('tasks',JSON.stringify(newTasks))
 
 }
 
