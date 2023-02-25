@@ -56,15 +56,18 @@ setTask([])
 localStorage.removeItem('tasks')
 }
 
-const removeTask = value=>{
-setTask((oldValues)=>{
-  console.log(oldValues);
-  localStorage.setItem('tasks',JSON.stringify(oldValues))
- return oldValues.filter(task=>task !== value)
+const removeTask = index=>{
+  
+// setTask((oldValues)=>{
+//   console.log(oldValues);
+//   localStorage.setItem('tasks',JSON.stringify(oldValues))
+//  return oldValues.filter(task=>task !== value)
 
-})
-
-
+// })
+tasks.splice(index,1)
+setTask([...tasks])
+console.log(tasks);
+localStorage.setItem('tasks',JSON.stringify(tasks))
 
 }
 
@@ -76,7 +79,8 @@ return (
     style={{padding:'0 .5rem'}}>{plusIcon}</button>
     <button className={styles.trash} onClick={clearAll}>{faTrashs}</button>
   {tasks.map((task,id)=> 
-    <div key={id} 
+    <div 
+    key={id} 
   className={styles.todo}><span className={status ? styles.completed : null} 
   onClick={toggleClass}>{id+1} : {task}</span>
   <i className={styles.trashIcon} onClick={()=>removeTask(task)}>{faTrashs}</i>
